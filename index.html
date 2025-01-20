@@ -1,61 +1,124 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人网站</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="author" href="https://yourwebsite.com/humans.txt"/>
+  <link rel="icon" href="https://yourwebsite.com/favicon.ico" type="image/x-icon">
+  <meta name="description" content="Welcome to my portfolio. Explore my photography, research, and social connections."/>
+  <meta property="og:title" content="My Portfolio"/>
+  <meta property="og:description" content="Photography, Research & Social Media"/>
+  <title>My Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Basic styles for layout */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    header, section {
+      margin: 20px;
+    }
+    .photo-wall img {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 10px 0;
+    }
+    .expander__button {
+      background-color: #32373c;
+      color: #fff;
+      padding: 10px;
+      font-size: 1.2em;
+      text-align: center;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+    .expander__button:hover {
+      background-color: #555;
+    }
+    section {
+      display: none; /* All sections are hidden initially */
+    }
+    .active {
+      display: block; /* Display the active section */
+    }
+  </style>
 </head>
 <body>
-    <!-- 头部导航 -->
-    <header id="header">
-        <div class="header-container">
-            <a class="logo" href="/">Traffic Productions©</a>
-            <nav class="navigation">
-                <a href="#photos" class="nav-item">照片墙</a>
-                <a href="#research" class="nav-item">科研</a>
-                <a href="#social" class="nav-item">社交媒体</a>
-            </nav>
-        </div>
-    </header>
-
-    <!-- 照片墙板块 -->
-    <section id="photos" class="photo-gallery">
-        <div class="gallery-controls">
-            <button class="grid-view">Grid</button>
-            <button class="list-view">List</button>
-        </div>
-        <div class="gallery-content">
-            <!-- 在此展示图片 -->
-        </div>
+  <header>
+    <h1>Welcome to My Portfolio</h1>
+    <nav>
+      <button class="expander__button" id="photo-wall-btn">Photography</button>
+      <button class="expander__button" id="research-btn">Research</button>
+      <button class="expander__button" id="social-media-btn">Social Media</button>
+    </nav>
+  </header>
+  <main>
+    <section id="photo-wall" class="expander">
+      <h2>My Photography</h2>
+      <div class="photo-wall">
+        <img src="photo1.jpg" alt="Photo 1">
+        <img src="photo2.jpg" alt="Photo 2">
+        <img src="photo3.jpg" alt="Photo 3">
+        <!-- Add more photos here -->
+      </div>
     </section>
 
-    <!-- 科研板块 -->
-    <section id="research" class="research">
-        <h2>我的研究</h2>
-        <div class="research-list">
-            <div class="research-item">
-                <h3>研究标题</h3>
-                <p>简短摘要...</p>
-                <a href="#" class="read-more">阅读更多</a>
-            </div>
-            <!-- 更多研究项目 -->
-        </div>
+    <section id="research" class="expander">
+      <h2>Research and Publications</h2>
+      <p>Explore my research and papers in the field of neuroscience and related studies.</p>
+      <ul>
+        <li><a href="paper1.pdf" target="_blank">Research Paper 1</a></li>
+        <li><a href="paper2.pdf" target="_blank">Research Paper 2</a></li>
+        <!-- Add more research papers here -->
+      </ul>
     </section>
 
-    <!-- 社交媒体板块 -->
-    <section id="social" class="social-media">
-        <h2>社交媒体</h2>
-        <div class="social-links">
-            <a href="https://www.instagram.com" class="social-icon">Instagram</a>
-            <a href="https://www.linkedin.com" class="social-icon">LinkedIn</a>
-            <!-- 其他社交媒体 -->
-        </div>
+    <section id="social-media" class="expander">
+      <h2>Social Media & Contact</h2>
+      <p>Feel free to connect with me through my social media profiles or reach out via email:</p>
+      <ul>
+        <li><a href="https://www.instagram.com/yourprofile" target="_blank">Instagram</a></li>
+        <li><a href="https://www.linkedin.com/in/yourprofile" target="_blank">LinkedIn</a></li>
+        <li><a href="mailto:youremail@example.com">Email Me</a></li>
+      </ul>
     </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 Your Name. All rights reserved.</p>
+  </footer>
 
-    <!-- 页脚 -->
-    <footer id="footer">
-        <p>&copy; 2025 Traffic Productions. All rights reserved.</p>
-    </footer>
+  <script>
+    // Get all buttons and sections
+    const photoWallBtn = document.getElementById('photo-wall-btn');
+    const researchBtn = document.getElementById('research-btn');
+    const socialMediaBtn = document.getElementById('social-media-btn');
+    
+    const photoWallSection = document.getElementById('photo-wall');
+    const researchSection = document.getElementById('research');
+    const socialMediaSection = document.getElementById('social-media');
+    
+    // Function to show only the active section
+    function showSection(sectionToShow) {
+      // Hide all sections
+      photoWallSection.classList.remove('active');
+      researchSection.classList.remove('active');
+      socialMediaSection.classList.remove('active');
+
+      // Show the selected section
+      sectionToShow.classList.add('active');
+    }
+
+    // Event listeners for button clicks
+    photoWallBtn.addEventListener('click', () => showSection(photoWallSection));
+    researchBtn.addEventListener('click', () => showSection(researchSection));
+    socialMediaBtn.addEventListener('click', () => showSection(socialMediaSection));
+  </script>
+
 </body>
 </html>
