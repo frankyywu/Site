@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网站内容管理</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+        }
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+        .sidebar {
+            width: 250px;
+            background: #333;
+            color: white;
+            padding: 1rem;
+        }
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+        }
+        .nav-item {
+            padding: 0.75rem;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .nav-item:hover {
+            background: #444;
+        }
+        .section-editor {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 1rem;
+        }
+        .editor-field {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            min-height: 100px;
+        }
+        button {
+            padding: 0.5rem 1rem;
+            background: #000;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h2>内容管理</h2>
+            <div class="nav-item" onclick="showSection('basic')">基本信息</div>
+            <div class="nav-item" onclick="showSection('services')">服务内容</div>
+            <div class="nav-item" onclick="showSection('projects')">项目展示</div>
+            <div class="nav-item" onclick="showSection('awards')">获奖情况</div>
+            <div class="nav-item" onclick="showSection('collaborators')">合作伙伴</div>
+            <div class="nav-item" onclick="logout()">退出登录</div>
+        </div>
+        <div class="main-content" id="mainContent">
+            <!-- 内容区域将通过JavaScript动态加载 -->
+        </div>
+    </div>
+
+    <script>
+        // 检查登录状态
+        if (!localStorage.getItem('adminLoggedIn')) {
+            window.location.href = 'login.html';
+        }
+
+        // 显示不同的编辑区域
+        function showSection(section) {
+            const content = document.getElementById('mainContent');
+            switch(section) {
+                case 'basic':
+                    content.innerHTML = `
+                        <div class="section-editor">
+                            <h2>基本信息编辑</h2>
+                            <div class="editor-field">
+                                <label>网站标题</label>
+                                <input type="text" id="siteTitle" value="Tomorrow Happens">
+                            </div>
+                            <div class="editor-field">
+                                <label>网站描述</label>
+                                <textarea id="siteDescription">Tomorrow Happens is a web development/design studio...</textarea>
+                            </div>
+                            <button onclick="saveBasicInfo()">保存更改</button>
+                        </div>
+                    `;
+                    break;
+                case 'services':
+                    // 添加服务编辑界面
+                    break;
+                case 'projects':
+                    // 添加项目编辑界面
+                    break;
+                // ... 其他部分
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('adminLoggedIn');
+            window.location.href = 'login.html';
+        }
+
+        // 默认显示基本信息页面
+        showSection('basic');
+    </script>
+</body>
+</html>
